@@ -1,15 +1,38 @@
 include("shared.lua")
 
 -- tegn på skærmen
-
-
 function GM:HUDPaint()
-	draw.DrawText("Hello World", "Trebuchet24", 50, 20, Color(255,255,255,255), TEXT_ALIGN_LEFT)
 
-	surface.SetDrawColor( 255, 0, 0, 255 )
-	surface.DrawLine( 0, 0, 500, 100 )
+	ply = LocalPlayer()
+
+	draw.DrawText(armor, "Trebuchet24", 50, 20, Color(255,255,255,255), TEXT_ALIGN_LEFT)
+
+	surface.SetDrawColor( 100, 100, 100, 100 )
+	surface.DrawRect( 50, 500, 500, 30 )
+
+	surface.SetDrawColor( 0, 0, 200, 100 )
+	surface.DrawRect( 50, 500, armor*5, 30 )
 end
 
+-- skjul standard HUD
+local function HUDShouldDraw(name)
+	if name == "CHudHealth" then
+		return false
+	end
+
+	if name == "CHudBattery" then
+		return false
+	end
+
+	if name == "CHudAmmo" then
+		return false
+	end
+
+	if name == "CHudSecondaryAmmo" then
+		return false
+	end
+end
+hook.Add("HUDShouldDraw", "How to: HUD Example HUD hider", HUDShouldDraw)
 
 -- third person
 -- function MyCalcView(ply, pos, angles, fov)

@@ -23,7 +23,6 @@ function GM:PlayerHurt( player, attacker, hpLeft, damage )
      print("hpLeft "..hpLeft)
      print("damage "..damage)
 
-     player:Kill()
 end 
 
 -- alle funktioner som starter med "function GM" 
