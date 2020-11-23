@@ -1,0 +1,7 @@
+"liro"
+{
+	"base"		"sandbox"
+	"title"		"FGU Gamemode"
+	"maps"		"^rp_"
+	"menusystem"	"1"
+}
