@@ -1,9 +1,7 @@
 include("shared.lua")
 
 function ENT:Initialize()
-    self:initVars()
-    if not self.DisplayName or self.DisplayName == "" then
-    end
+    
 end
 
 function ENT:Draw()
@@ -12,18 +10,15 @@ function ENT:Draw()
     local Pos = self:GetPos()
     local Ang = self:GetAngles()
 
-    local owner = "hello"
 
     surface.SetFont("Trebuchet24")
-    local text = "self.DisplayName"
+    local text = "Money Printer"
     local TextWidth = surface.GetTextSize(text)
-    local TextWidth2 = surface.GetTextSize(owner)
 
     Ang:RotateAroundAxis(Ang:Up(), 90)
 
     cam.Start3D2D(Pos + Ang:Up() * 11.5, Ang, 0.11)
-        draw.WordBox(2, -TextWidth * 0.5, -30, text, "Trebuchet24", Color(140, 0, 0, 100), Color(255, 255, 255, 255))
-        draw.WordBox(2, -TextWidth2 * 0.5, 18, owner, "Trebuchet24", Color(140, 0, 0, 100), Color(255, 255, 255, 255))
+        draw.WordBox(2, -TextWidth * 0.5, -30, text, "Trebuchet24", Color(0, 0, 0, 100), Color(255, 255, 255, 255))
     cam.End3D2D()
 end
 

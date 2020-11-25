@@ -1,17 +1,68 @@
 include("shared.lua")
 
+function drawRectOutline(x, y, w, h)
+
+	surface.SetDrawColor( Color(0,0,0,255) )
+
+	-- upper
+	surface.DrawLine( x, y, x+w, y )
+
+	-- lower
+	surface.DrawLine( x, y+h, x+w, y+h )
+
+	-- left
+	surface.DrawLine( x, y, x, y+h )
+
+	-- right
+	surface.DrawLine( x+w, y, x+w, y+h )
+
+end
+
+function drawRectInfo(value, x, y, color)
+
+	surface.SetDrawColor( 100, 100, 100, 100 )
+	surface.DrawRect( x, y, 500, 30 )
+
+	surface.SetDrawColor( color )
+	surface.DrawRect( x, y, value*5, 30 )
+
+	--drawRectOutline(x, y, 500, 30)
+
+end
+
 -- tegn på skærmen
 function GM:HUDPaint()
 
 	ply = LocalPlayer()
 
-	draw.DrawText(armor, "Trebuchet24", 50, 20, Color(255,255,255,255), TEXT_ALIGN_LEFT)
+	playerArmor 	= ply:Armor()
+	playerHealth 	= ply:Health()
+	playerName		= ply:Name()
 
-	surface.SetDrawColor( 100, 100, 100, 100 )
-	surface.DrawRect( 50, 500, 500, 30 )
+	width 	= ScrW()
+	height 	= ScrH()
 
-	surface.SetDrawColor( 0, 0, 200, 100 )
-	surface.DrawRect( 50, 500, armor*5, 30 )
+	spacing = 35
+
+	-- background
+	surface.SetDrawColor( Color(0,0,0,150) )
+	surface.DrawRect( 20, height-spacing*4, 520, 190 )
+	-- background outline
+	drawRectOutline(20, height-spacing*4, 520, 190)
+
+	-- draw name
+	draw.DrawText("name: "..playerName, "Trebuchet24", 30, height-spacing*4, Color(255,	255,255,255), TEXT_ALIGN_LEFT)
+	
+	-- draw money
+	draw.DrawText("$5000", 				"Trebuchet24", 30, height-spacing*3, Color(0,100,0,255), TEXT_ALIGN_LEFT)
+
+	-- draw armor info
+	drawRectInfo(playerArmor, 30, height-spacing, Color(0,0,255,100))
+
+	-- draw health info
+	drawRectInfo(playerHealth, 30, height-spacing*2, Color(255,0,0,100))
+
+
 end
 
 -- skjul standard HUD
@@ -92,4 +143,4 @@ function dermaTest()
 	end
 
 end
-concommand.Add('store_patter', dermaTest)
+concommand.Add('dermaTest', dermaTest)
