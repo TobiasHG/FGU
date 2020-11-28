@@ -85,24 +85,6 @@ local function HUDShouldDraw(name)
 end
 hook.Add("HUDShouldDraw", "How to: HUD Example HUD hider", HUDShouldDraw)
 
--- third person
--- function MyCalcView(ply, pos, angles, fov)
---     local view = {}
-
---     view.origin = pos--(angles:Forward()*100)
---     view.angles = angles
---     view.fov = fov
- 
---     return view
--- end
--- hook.Add("CalcView", "MyCalcView", MyCalcView)
- 
--- hook.Add("ShouldDrawLocalPlayer", "MyHax ShouldDrawLocalPlayer", function(ply)
---         return false
--- end)
-
-
---
 function dermaTest()
 
 	local window = vgui.Create( "DFrame" )
